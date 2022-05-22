@@ -327,7 +327,7 @@ hr {
     margin-top: 1em;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 60em) {
     .main-content {
         display: block;
     }
@@ -344,7 +344,7 @@ hr {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 30em) {
     h1, h2, h3, p {
         font-size: .9em;
     }
