@@ -1,9 +1,12 @@
+var global_api_key = "";
+
 function main() {
     const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has("api") || !urlParams.has("v")) {
         return;
     }
     const api_key = urlParams.get("api");
+    global_api_key = api_key;
     const video_id = urlParams.get("v");
     const thumbnail_url = `https://i3.ytimg.com/vi/${video_id}/hqdefault.jpg`;
 
@@ -114,4 +117,16 @@ function nFormatter(num, digits) {
 	date = dateString.split("T")[0].split('-').reverse();
   date[1] = months[Number(date[1])-1];
   return date.join(' ');
+}
+
+function keydownSearch(event) {
+    if (event.keyCode == 13) {
+        search();
+    }
+}
+
+function search() {
+    var search = encodeURIComponent(document.getElementById("search-field").value).replaceAll("%20", "+");
+    window.open(`../search/?api=${global_api_key}&search=${search}`, "_blank");
+    document.getElementById("search-field").value = "";
 }

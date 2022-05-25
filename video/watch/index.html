@@ -13,7 +13,7 @@
         <div class='header-container'>
             <div class='header-left'>
                 <div>
-                    <a class="main-logo-link" href="../index.html"><div>
+                    <a class="main-logo-link" href="../" target="_blank" rel="noopener"><div>
                         <img class="main-logo-image" src="../xxd.png" alt="MyTube">
                     </div></a>
                 </div>
@@ -21,8 +21,8 @@
             <div class='header-center'>
                 <div>
                     <div class="search-bar">
-                        <input class="search-field" placeholder="Search">
-                        <button class="search-button" onclick="alert(1)">
+                        <input class="search-field" placeholder="Search" id="search-field" onkeydown="keydownSearch(event)">
+                        <button class="search-button" onclick="search()">
                             <img src="../search.png" class="search-image">
                         </button>
                     </div>
@@ -32,7 +32,7 @@
     </header>
     <div class="main-content">
         <div class="video-column">
-            <div class="iframe-wrapper">
+            <div class="iframe-wrapper" id="iframe-wrapper">
                 <iframe id="main-player" src="" title="YouTube video player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
             </div>
             <h2 class="main-video-title" id="video-title">Title</h2>
