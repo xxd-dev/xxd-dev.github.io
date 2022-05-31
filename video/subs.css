@@ -200,7 +200,6 @@ p {
 
 
 .card {
-  aspect-ratio: 1 / 0.9;
   padding-bottom: 1rem;
 }
 
@@ -259,4 +258,49 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
 	background: var(--accent);
 	transition: width .5s ease-out;
+}
+
+
+@media only screen and (max-width: 60em) {
+    .search-main-content {
+        padding: 0;
+        padding-top: 4em;
+    }
+    .search-video-description {
+        height: 0;
+    }
+    .search-channel-info {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .search-video-avatar {
+        width: 2em;
+        height: 2em;
+    }
+}
+
+@media only screen and (max-width: 30em) {
+    h1, h2, h3, p {
+        font-size: .9em;
+    }
+    .main-logo-image {
+        margin-left: .5em;
+    }
+    .header-container > .header-center {
+        width: min(max(33%, 30em), 100% - 8em);
+    }
+    .main-content {
+        padding: .5em;
+        padding-top: 4.5em;
+    }
+    .search-videos-container {
+        padding: .5em;
+    }
+
+    .search-video-avatar {
+        margin-right: .5em;
+    }
+    .search-video-left-container {
+        padding-right: .5em;
+    }
 }
