@@ -39,7 +39,6 @@
     <p>usage: <code>https://xxd-dev.github.io/video/channel-id-converter</code><br>
     quota cost: 1 point per channel<br>
     allows you to convert a human-readable list of channels into a comma-separated list of channel-ids. this can be used to migrate your subscriptions from youtube to here.
-    </p>
 
     <br><br><br>
     <p>I am in no way responsible for what you do with your api key and it is not my duty to ensure whether this is a permitted use of it or not. you as the holder of the key are exclusively accountable for using it within this website.
