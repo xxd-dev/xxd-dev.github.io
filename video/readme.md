@@ -38,10 +38,9 @@
 <h3 id="channel-ids">channel-IDs (not yet available)</h3>
     <p>usage: <code>https://xxd-dev.github.io/video/channel-id-converter</code><br>
     quota cost: 1 point per channel<br>
-    allows you to convert a human-readable list of channels into a comma-separated list of channel-ids. this can be used to migrate your subscriptions from youtube to here.
-
-    <br><br><br>
-    <p>I am in no way responsible for what you do with your api key and it is not my duty to ensure whether this is a permitted use of it or not. you as the holder of the key are exclusively accountable for using it within this website.
+    allows you to convert a human-readable list of channels into a comma-separated list of channel-ids. this can be used to migrate your subscriptions from youtube to here.</p>
+    <p><br><br><br>
+    I am in no way responsible for what you do with your api key and it is not my duty to ensure whether this is a permitted use of it or not. you as the holder of the key are exclusively accountable for using it within this website.
     this website does not use cookies by itself, but there is no guarantee that using the embedded youtube player will not make use of cookies.
     this website does not collect or store any personal data.
     the website uses automated API calls with a key provided by you and takes no responsibility that the api-calls are made correctly or are in order with the terms of service. you use this website at your own risk and take legal responsibility.
