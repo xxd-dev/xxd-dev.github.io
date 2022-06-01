@@ -313,12 +313,21 @@ hr {
     margin-bottom: .5em;
     font-size: medium;
 }
+
+.comment > div {
+    max-width: calc(100% - 4em);
+}
+
 .comment > div > p {
     margin-bottom: .5em;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .comment > div > p > a {
     color: var(--white);
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 
