@@ -8,7 +8,6 @@ function main() {
     const api_key = urlParams.get("api");
     global_api_key = api_key;
     const search_query = urlParams.get("search");
-    console.log("moin");
     var videoIDs = new Set();
     var channelIDs = new Set();
     var search;
@@ -48,8 +47,6 @@ function main() {
         for (let i in channels) {
             channel_dict[channels[i].id] = channels[i];
         }
-        console.log(video_dict);
-        console.log(channel_dict)
 
         for (let i in search.items) {
             video = search.items[i];

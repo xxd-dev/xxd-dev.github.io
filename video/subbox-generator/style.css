@@ -7,6 +7,7 @@
     --header: #00684c;
     --comments: #2d403b;
     --searchbar: #ffffff;
+    --accent: #00a378;
 }
 
 a {
@@ -278,7 +279,7 @@ h3, h2 {
     margin-bottom: .25em;
 }
 
-p , li{
+p {
     margin-left: 1em;
     line-height: 1.5em;
 }
@@ -296,12 +297,61 @@ code {
     border-radius: .2em;
 }
 
-:target::before {
-    content: "";
-    display: block;
-    height: 4em;
-    margin: -4em 0 0;
+input, textarea {
+    font-size: 1em;
+    width: min(90%, 30em);
 }
+
+button, progress {
+    font-size: 1em;
+    max-width: 20em;
+}
+
+button {
+    background-color: var(--accent);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:active {
+    background-color: var(--header);
+}
+
+button[disabled]:active {
+    background-color: var(--accent);
+}
+
+button[disabled] {
+    opacity: 0.5;
+}
+
+h3 {
+    margin-left: 1em;
+}
+
+li {
+    line-height: 2em;
+    padding-bottom: .5em;
+}
+
+.channel-example {
+    background: var(--darkgray);
+    display: inline-block;
+    margin: .25em;
+    margin-left: 1em;
+    padding: .25em;
+    padding-right: 3em;
+    color: var(--white);
+    border-radius: .25em;
+    line-height: 1.25em;
+}
+
+
 
 
 @media only screen and (max-width: 60em) {

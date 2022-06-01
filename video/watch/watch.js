@@ -10,10 +10,7 @@ function main() {
     const video_id = urlParams.get("v");
     const thumbnail_url = `https://i3.ytimg.com/vi/${video_id}/hqdefault.jpg`;
 
-    console.log(api_key);
-    console.log(video_id);
     document.getElementById("main-player").src = `https://www.youtube-nocookie.com/embed/${video_id}?playlist=${video_id}&autoplay=1&modestbranding=1&rel=0`;
-    console.log("hello");
     fetch(`https://www.googleapis.com/youtube/v3/videos?id=${video_id}&part=snippet%2CcontentDetails%2Cstatistics &key=${api_key}`)
     .then(response => response.json())
     .then(response => {
@@ -78,18 +75,12 @@ function main() {
     })
     .then(response => console.log(JSON.stringify(response)));
 }
-
-function tmp() {
-    console.log("nice");
-}
   
 function escapeHTML(str){
     var p = document.createElement("p");
     p.appendChild(document.createTextNode(str));
     return p.innerHTML.replaceAll("\n", "<br>");
 }
-
-
   
 function formatNumber(m) {
     return nFormatter(Number(m), 1);
@@ -110,13 +101,13 @@ function nFormatter(num, digits) {
       return num >= item.value;
     });
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
-  }
+}
 
-  function formatDate(dateString) {
+function formatDate(dateString) {
 	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	date = dateString.split("T")[0].split('-').reverse();
-  date[1] = months[Number(date[1])-1];
-  return date.join(' ');
+    date[1] = months[Number(date[1])-1];
+    return date.join(' ');
 }
 
 function keydownSearch(event) {

@@ -23,11 +23,13 @@ function main() {
     
     playlists_promises = [];
     for (let i in channels) {
-        document.getElementById("progress-bar").value += 1;
         playlist = "UU" + channels[i].substring(2);
         playlists_promises.push(
             fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2Cstatus%2CcontentDetails&maxResults=50&playlistId=${playlist}&key=${global_api_key}`)
-            .then(response => response.json())
+            .then(response => {
+                document.getElementById("progress-bar").value += 1;
+                return response.json();
+            })
         );
     }
 
