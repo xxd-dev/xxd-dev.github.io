@@ -2,11 +2,18 @@ var global_api_key = "";
 
 function main() {
     const urlParams = new URLSearchParams(window.location.search);
-    if (!urlParams.has("api") || !urlParams.has("search")) {
+    if (!urlParams.has("api")) {
+        window.open('../howto','_self');
         return;
     }
+
     const api_key = urlParams.get("api");
     global_api_key = api_key;
+
+    if (!urlParams.has("search")) {
+        return;
+    }
+    
     const search_query = urlParams.get("search");
     var videoIDs = new Set();
     var channelIDs = new Set();

@@ -2,11 +2,18 @@ var global_api_key = "";
 
 function main() {
     const urlParams = new URLSearchParams(window.location.search);
-    if (!urlParams.has("api") || !urlParams.has("v")) {
+    if (!urlParams.has("api")) {
+        window.open('../howto','_self');
         return;
     }
+
     const api_key = urlParams.get("api");
     global_api_key = api_key;
+
+    if (!urlParams.has("v")) {
+        return;
+    }
+
     const video_id = urlParams.get("v");
     const thumbnail_url = `https://i3.ytimg.com/vi/${video_id}/hqdefault.jpg`;
 

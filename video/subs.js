@@ -2,10 +2,14 @@ var global_api_key = "";
 
 function main() {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has("api")) {
-        const api_key = urlParams.get("api");
-        global_api_key = api_key;
+    if (!urlParams.has("api")) {
+        window.open('../howto','_self');
+        return;
     }
+
+    const api_key = urlParams.get("api");
+    global_api_key = api_key;
+
     if (!urlParams.has("subs")) {
         let e = document.getElementById("progress-bar");
         e.parentNode.removeChild(e);

@@ -16,6 +16,7 @@ function return_message(message) {
     document.getElementById("progress").style = "opacity: 0;";
     document.getElementById("subbox").style = "opacity: 1;";
     document.getElementById("subbox").innerHTML = message;
+    window.scrollTo(0, document.body.scrollHeight);
 }
 
 function generate_url() {
