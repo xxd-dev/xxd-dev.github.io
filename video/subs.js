@@ -3,7 +3,7 @@ var global_api_key = "";
 function main() {
     const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has("api")) {
-        window.open('../howto','_self');
+        window.open('/howto','_self');
         return;
     }
 
