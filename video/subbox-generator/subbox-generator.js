@@ -26,6 +26,7 @@ function generate_url() {
     try {
         generate_url_error_catcher();
     } catch(error) {
+        console.log(error);
         return_message("invalid input!");
     }
 }
@@ -34,10 +35,6 @@ function generate_url_error_catcher() {
     let api_key = document.getElementById("api-key").value;
     let channels = document.getElementById("channels").value.split("\n");
     let channel_ids = [];
-    if (channels.length > 50) {
-        return_message("currently you can only enter a maximum of 50 channels!");
-        return;
-    }
     let tmp = []
     for (let i in channels) {
         let channel = channels[i];

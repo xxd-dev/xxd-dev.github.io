@@ -17,7 +17,7 @@ function main() {
     const video_id = urlParams.get("v");
     const thumbnail_url = `https://i3.ytimg.com/vi/${video_id}/hqdefault.jpg`;
 
-    document.getElementById("main-player").src = `https://www.youtube-nocookie.com/embed/${video_id}?playlist=${video_id}&autoplay=1&modestbranding=1&rel=0`;
+    document.getElementById("main-player").src = `https://www.youtube-nocookie.com/embed/${video_id}?playlist=${video_id}&vq=hd1080&autoplay=1&modestbranding=1&rel=0`;
     fetch(`https://www.googleapis.com/youtube/v3/videos?id=${video_id}&part=snippet%2CcontentDetails%2Cstatistics &key=${api_key}`)
     .then(response => response.json())
     .then(response => {

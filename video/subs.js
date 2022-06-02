@@ -15,6 +15,12 @@ function main() {
         e.parentNode.removeChild(e);
         return;
     }
+
+    var maxv = 50;
+    if (urlParams.has("maxv")) {
+        maxv = Number(urlParams.get("maxv"));
+    }
+
     const channel_concat = urlParams.get("subs");
     const channels = channel_concat.split(",");
 
@@ -22,7 +28,7 @@ function main() {
     var videos_list = [];
     var video_dict = {};
     var num_channels = channels.length;
-    document.getElementById("progress-bar").max = num_channels + 2;
+    document.getElementById("progress-bar").max = num_channels + Math.ceil(num_channels/50) + Math.ceil(maxv/50);
     document.getElementById("progress-bar").value = 0;
     
     playlists_promises = [];
@@ -32,7 +38,12 @@ function main() {
             fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2Cstatus%2CcontentDetails&maxResults=50&playlistId=${playlist}&key=${global_api_key}`)
             .then(response => {
                 document.getElementById("progress-bar").value += 1;
-                return response.json();
+                console.log(response);
+                if (response.ok){
+                    return response.json();
+                } else {
+                    return null;
+                }
             })
         );
     }
@@ -43,7 +54,9 @@ function main() {
         let raw_videos = [];
         for (let i in playlists) {
             let playlist = playlists[i];
-            raw_videos = raw_videos.concat(playlist.items);
+            if (playlist !== null) {
+                raw_videos = raw_videos.concat(playlist.items);
+            }
         }
         videos_list = raw_videos.map(function(item) {
             return {
@@ -59,28 +72,57 @@ function main() {
         videos_list.sort(function (first, second) {
             return second.upload_date_millis- first.upload_date_millis;
         });
-        videos_list = videos_list.slice(0, 50);
+        videos_list = videos_list.slice(0, maxv);
+        let videos_list_chunked = sliceIntoChunks(videos_list, 50);
+        console.log(videos_list_chunked);
+        let video_promises = [];
+        for (let a in videos_list_chunked) {
+            let sublist = videos_list_chunked[a];
+            let concat = sublist.map(item => item.videoId).join(",");
+            video_promises.push(
+                fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${concat}&key=${global_api_key}`)
+                .then(response => {
+                    document.getElementById("progress-bar").value += 1;
+                    return response.json()
+                })
+                );
+        }
         
-        videoIds = videos_list.map(item => item.videoId);
-        document.getElementById("progress-bar").value += 1;
-        return fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channel_concat}&key=${global_api_key}`);
+        return Promise.all(video_promises);
     })
-    .then(response => response.json())
-    .then(response => {
-        let channels = response.items
-        for (let i in channels) {
-            channel_dict[channels[i].id] = channels[i];
+    .then((values) => {
+        for (let i in values) {
+            response = values[i];
+            let videos = response.items;
+            for (let i in videos) {
+                video_dict[videos[i].id] = videos[i];
+            }
         }
 
-        let video_concat = videoIds.join(",");
-        document.getElementById("progress-bar").value += 1;
-        return fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${video_concat}&key=${global_api_key}`);
+        console.log(video_dict);
+
+        channel_promises = [];
+        let channels_chunked = sliceIntoChunks(channels, 50);
+        for (let a in channels_chunked) {
+            let sublist = channels_chunked[a];
+            let concat = sublist.join(",")
+            channel_promises.push(
+                fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${concat}&key=${global_api_key}`)
+                .then(response => {
+                    document.getElementById("progress-bar").value += 1;
+                    return response.json();
+                })
+            );
+        }
+        return Promise.all(channel_promises);
     })
-    .then(response => response.json())
-    .then(response => {
-        let videos = response.items;
-        for (let i in videos) {
-            video_dict[videos[i].id] = videos[i];
+    .then((values) => {
+        for (let i in values) {
+            response = values [i];
+            let channels = response.items
+            for (let i in channels) {
+                channel_dict[channels[i].id] = channels[i];
+            }
         }
 
         console.log(video_dict);
@@ -115,6 +157,15 @@ function main() {
         }
     })
 
+}
+
+function sliceIntoChunks(arr, chunkSize) {
+    const res = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        const chunk = arr.slice(i, i + chunkSize);
+        res.push(chunk);
+    }
+    return res;
 }
 
 String.prototype.replaceAt = function(index, replacement) {

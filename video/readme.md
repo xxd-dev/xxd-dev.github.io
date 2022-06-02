@@ -37,12 +37,13 @@
     </p>
 
 <h3>subscriptions</h3>
-    <p>usage: <code>https://xxd-dev.github.io/video/?api=[YOUR_API_KEY]&subs=[CHANNEL_IDS]</code><br>
+    <p>usage: <code>https://xxd-dev.github.io/video/?api=[YOUR_API_KEY]&subs=[CHANNEL_IDS]&maxv=[MAX_VIDEOS]</code><br>
     <code>YOUR_API_KEY</code>: youtube enabled api key (look <a href="https://developers.google.com/youtube/v3/getting-started" target="_blank" rel="noopener">here</a> for help)<br>
-    <code>CHANNEL_IDS</code>: comma-separated list of up to 50 channel-IDs (use <a href="#subbox-gen">subbox generator</a> for help)<br>
-    quota cost: 2 points + 1 point per channel<br>
+    <code>CHANNEL_IDS</code>: comma-separated list of channel-IDs (use <a href="#subbox-gen">subbox generator</a> for help)<br>
+    <code>MAX_VIDEOS</code>: (optional, default is 50) number of returned videos<br>
+    quota cost: 1 point per channel + 1 point for each 50 channels + 1 point for each 50 returned videos<br>
     <b>warning:</b> many channels/refreshes can use your daily quota quickly!<br>
-    similar to a landing page, this shows all recent uploads of your subscribed cannels. it is limited to the top 50 channels and only returns the 50 most recent uploads.
+    similar to youtubes subscription page, this shows all recent uploads of your subscribed cannels. for each channel, only the newest 50 videos are reported, but in total you can get however many videos back as you specify in <code>MAX_VIDEOS</code>.
     </p>
 
 <h3 id="subbox-gen">subbox generator</h3>
@@ -50,16 +51,4 @@
     quota cost: 0 or 1 points per channel<br>
     guides you through transferring your youtube subscriptions onto this website.
     </p>
-
-<p><br><br><br>
-I am in no way responsible for what you do with your api key and it is not my duty to ensure whether this is a permitted use of it or not. you as the holder of the key are exclusively accountable for using it within this website.
-this website does not use cookies by itself, but there is no guarantee that using the embedded youtube player will not make use of cookies.
-this website does not collect or store any personal data.
-the website uses automated API calls with a key provided by you and takes no responsibility that the api-calls are made correctly or are in order with the terms of service. you use this website at your own risk and take legal responsibility.
-this website does not guarantee functionality in case of changing api-calls or changing terms of service.
-this website is statically served and enables users to do nothing more, than they could do on a locally served instance of this page. you are welcome to use this approach, as this webpage is completely open-source.
-any requests are made by the holder of the api-key and not a webserver.
-other than that,<br>
-enjoy an ad free, recommendation free video platform
-</p>
 </body>
