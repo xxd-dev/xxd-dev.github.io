@@ -32,7 +32,7 @@
                         </li>
                         <li>go to your <a href="https://www.youtube.com/feed/channels" target="_blank" rel="noopener">youtube subscriptions list</a> and scroll to the very bottom (to load everything) </li>
                         <li id="console">open the developer console.</li>
-                        <li>enter <code>$$("#main-link.channel-link").reduce((str, el)=>str+'\n'+el.href)</code> into the console.</li>
+                        <li>enter <code>console.log($$("#main-link.channel-link").reduce((str, el)=>str+'\n'+el.href))</code> into the console.</li>
                         <li>the returned list of links should look like this:<br><div class="channel-example">
                             https://www.youtube.com/user/channel1<br>
                             https://www.youtube.com/channel/UCiD_f0rch4nNeL-tWo<br>
